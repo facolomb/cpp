@@ -31,13 +31,26 @@ void PmergeMe::displayVector()
 
 int PmergeMe::buildContainers(char **arg)
 {
-	int nb;
+	unsigned int nb;
 	int i = 1;
 
 	while (arg[i])
 	{
+		for (int j = 0; j < strlen(arg[i]); ++j)
+		{
+			if (arg[i][j] == '-')
+			{
+				std::cout << "Error : negative number" << std::endl;
+				return (0);
+			}
+			if (!isdigit(arg[i][j]))
+			{
+				std::cout << "Error : invalid char" << std::endl;
+				return(0);
+			}
+		}
 		nb = atoi(arg[i]);
-		if (nb < 0 || nb > INT_MAX)
+		if (nb > INT_MAX)
 		{
 			std::cout << "Error : invalid number" << std::endl;
 			return (0);

@@ -97,6 +97,8 @@ void RPN::doRPN(std::string input)
 	int 	isOp;
 	int 	nb;
 
+	if (input.size() == 0)
+		return;
 	for(int i = 0; i < input.size(); i++)
 	{
 		isOp = _isOperator(input[i]);
@@ -147,6 +149,11 @@ void RPN::doRPN(std::string input)
 			std::cout << "Error" << std::endl;
 			return;
 		}
+	}
+	if (_nbrs.size() > 1)
+	{
+		std::cout << "Error : too much numbers" << std::endl;
+		exit(1);
 	}
 	std::cout << _nbrs.top() << std::endl;
 }
